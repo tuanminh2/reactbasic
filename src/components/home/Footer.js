@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateTodos } from "../redux/todoSlice";
+import { updateTodos } from "../../redux/todoSlice";
 class Footer extends Component {
   constructor(props) {
     super(props);

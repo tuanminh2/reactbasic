@@ -1,23 +1,20 @@
-import FormInput from "./components/FormInput";
-import List from "./components/List";
-import Footer from "./components/Footer";
-import DataContextProvider from "./components/DataProvider";
 import { Component } from "react";
-import { Provider } from "react-redux";
-import reduxStore from "./redux/store";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./page/home.js";
+import Header from "./components/global/Header";
+import Completed from "./page/completed.js";
 class App extends Component {
   render() {
     return (
-      <Provider store={reduxStore}>
-        <div className="App">
-          <h1>To do list </h1>
-          <FormInput></FormInput>
-
-          <List></List>
-          <Footer></Footer>
-        </div>
-      </Provider>
+      <BrowserRouter >
+        {/* <Alert></Alert> */}
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/completed" element={<Completed />} />
+        </Routes>
+        {/* <Footer></Footer>  */}
+      </BrowserRouter>
     );
   }
 }

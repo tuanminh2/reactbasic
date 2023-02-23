@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
-import { updateTodos } from "../redux/todoSlice";
+import { updateTodos } from "../../redux/todoSlice";
 class List extends Component {
   switchComplete = (id) => {
     let newTodos = [...this.props.todos];
@@ -35,8 +35,7 @@ class List extends Component {
 
     return (
       <ul>
-        {todos &&
-          todos.length &&
+        {todos  &&
           todos.map((todo, index) => {
             if (Object.keys(todo).length > 0) {
               return (

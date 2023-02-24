@@ -1,18 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction } from "@reduxjs/toolkit";
 
 import axios from "axios";
+
+// export const abc = createAsyncThunk("abc", async (_, thunkAPI) => {
+//   console.log("------------->>>>");
+// });
+export const abc =() => {
+  console.log("------------->>>><<<<<");
+};
+
 export const getOtherTodos = createAsyncThunk(
   "fetch_othertodos",
-  async (thunkAPI ) => {
-
+  async (_, thunkAPI) => {
     try {
       const res = await axios.get("https://dummyjson.com/todos");
 
       console.log(res);
+      thunkAPI.dispatch(abc());
       return res.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue({ error: err.message });
+      // return thunkAPI.rejectWithValue({ error: err.message });
     }
   }
 );
@@ -33,6 +42,5 @@ export const otherTodoSlice = createSlice({
     });
   },
 });
-
 
 export default otherTodoSlice.reducer;

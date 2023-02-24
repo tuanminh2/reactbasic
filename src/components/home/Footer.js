@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
+
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,9 @@ class Footer extends Component {
     });
 
     this.props.updateTodos(newTodos);
+
+  
+    console.log(todos)
     this.setState({ checkAll: false });
   };
 
@@ -61,6 +65,7 @@ class Footer extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
+
 });
 
 const mapDispatchToProps = { updateTodos };

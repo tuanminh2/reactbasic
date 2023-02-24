@@ -11,12 +11,14 @@ class Table extends Component {
     if (this.props.completedTodo.length > 0) {
       return (
         <table
-          style={{ backgroundColor: theme.tableColor }}
-          className="w-3/5 mx-auto border-collapse border border-slate-400 "
+          style={{
+            backgroundColor: theme.tableColor,
+            maxWidth: "800px !important",
+          }}
+          className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300"
         >
           <thead>
             <tr>
-              <th className="border border-slate-300 ">Id</th>
               <th className="border border-slate-300 ">Task</th>
               <th className="border border-slate-300 ">Start</th>
               <th className="border border-slate-300 ">End</th>
@@ -27,8 +29,8 @@ class Table extends Component {
           <tbody>
             {this.props.completedTodo.map((item, index) => (
               <tr>
-                <td className="border border-slate-300 ">item.task</td>
-                <td className="border border-slate-300 ">1</td>
+                <td className="border border-slate-300 ">{item.name}</td>
+
                 <td className="border border-slate-300 ">1</td>
                 <td className="border border-slate-300 ">1</td>
                 <td className="border border-slate-300 ">1</td>
@@ -42,10 +44,7 @@ class Table extends Component {
           </tbody>
         </table>
       );
-    } else
-      return (
-        <p style={{ textAlign:"center"}}>Nothing to show</p>
-      );
+    } else return <p style={{ textAlign: "center" }}>Nothing to show </p>;
   }
 }
 const mapStateToProps = (state) => ({

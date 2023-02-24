@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
-
+import { v4 as uuidv4 } from "uuid";
 class FormInput extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +14,10 @@ class FormInput extends Component {
 
   addTodo = (e) => {
     e.preventDefault();
-    console.log(this.props)
+  
     this.props.updateTodos([
       ...this.props.todos,
-      { name: this.todoInput.current.value, complete: false },
+      { id: uuidv4(), name: this.todoInput.current.value, complete: false },
     ]);
 
     this.todoInput.current.focus();

@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
+import { addCompletedTodo } from "../../redux/completedTodoSlice";
+
 class List extends Component {
   switchComplete = (id) => {
     let newTodos = [...this.props.todos];
-    newTodos = newTodos.map((todo, index) => {
-      if (index === id) {
+    newTodos = newTodos.map((todo) => {
+      console.log(id, "  ", todo.id);
+      if (todo.id === id) {
         todo = { ...todo, complete: !todo.complete };
+        this.props.addCompletedTodo(todo);
         return todo;
       }
       return todo;
@@ -18,10 +22,9 @@ class List extends Component {
   hdlEditTodos = (editValue, id) => {
     let newTodos = [...this.props.todos];
 
-    newTodos = newTodos.map((todo, index) => {
-      if (index === id) {
+    newTodos = newTodos.map((todo) => {
+      if (todo.id === id) {
         todo = { ...todo, name: editValue };
-
         return todo;
       }
       return todo;
@@ -32,22 +35,20 @@ class List extends Component {
 
   render() {
     const { todos } = this.props;
-
+  
     return (
       <ul>
-        {todos  &&
+        {todos &&
           todos.map((todo, index) => {
-            if (Object.keys(todo).length > 0) {
-              return (
-                <ListItem
-                  hdlEditTodos={this.hdlEditTodos}
-                  todo={todo}
-                  key={index}
-                  id={index}
-                  checkComplete={this.switchComplete}
-                />
-              );
-            }
+            return (
+              <ListItem
+                hdlEditTodos={this.hdlEditTodos}
+                todo={todo}
+                key={todo.id}
+                id={todo.id}
+                checkComplete={this.switchComplete}
+              />
+            );
           })}
       </ul>
     );
@@ -56,8 +57,9 @@ class List extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
+  completedTodo: state.completedTodoSlice.completedTodo,
 });
 
-const mapDispatchToProps = { updateTodos };
+const mapDispatchToProps = { updateTodos, addCompletedTodo };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

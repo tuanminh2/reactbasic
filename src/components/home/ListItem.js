@@ -1,45 +1,42 @@
 import React, { Component } from "react";
 
-class ListItem extends Component{
+class ListItem extends Component {
   state = {
     onEdit: false,
-    editValue: this.props.todo.name
-  }
+    editValue: this.props.todo.name,
+  };
   hdlOnEdit = () => {
-    let temp = { ...this.state }
-    temp = { ...temp, onEdit: true }
-    this.setState(temp)
-
+    let temp = { ...this.state };
+    temp = { ...temp, onEdit: true };
+    this.setState(temp);
   };
 
   setEditValue = (newEditValue) => {
- 
-    let temp = { ...this.state }
-    temp = { ...temp, editValue: newEditValue }
-    this.setState(temp)
-  }
-   hdlSave = (id) => {
-    let temp = { ...this.state }
-    temp = { ...temp, onEdit: false }
-    this.setState(temp)
+    let temp = { ...this.state };
+    temp = { ...temp, editValue: newEditValue };
+    this.setState(temp);
+  };
+  hdlSave = (id) => {
+    let temp = { ...this.state };
+    temp = { ...temp, onEdit: false };
+    this.setState(temp);
     if (this.state.editValue) {
       this.props.hdlEditTodos(this.state.editValue, id);
     } else {
-      let temp1 = { ...this.state }
-      temp1 = { ...temp, editValue: this.props.todo.name }
-      this.setState(temp1)
-
+      let temp1 = { ...this.state };
+      temp1 = { ...temp, editValue: this.props.todo.name };
+      this.setState(temp1);
     }
   };
 
-
   render() {
-    const { todo, id, checkComplete } = this.props
+    const { todo, id, checkComplete } = this.props;
 
     if (this.state.onEdit) {
       return (
         <li>
           <input
+            style={{ border: "1px solid black", width: "80%" }}
             type="text"
             id="editValue"
             value={this.state.editValue}
@@ -67,7 +64,6 @@ class ListItem extends Component{
       );
     }
   }
-
-};
+}
 
 export default ListItem;

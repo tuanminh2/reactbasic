@@ -4,11 +4,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 export const getOtherTodos = createAsyncThunk(
   "fetch_othertodos",
-  async (thunkAPI) => {
+  async (thunkAPI ) => {
+
     try {
       const res = await axios.get("https://dummyjson.com/todos");
 
-
+      console.log(res);
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue({ error: err.message });
@@ -20,9 +21,9 @@ export const otherTodoSlice = createSlice({
   name: "xyz",
   initialState: {
     otherTodos:
-      JSON.parse(sessionStorage.getItem("othjer")) == null
+      JSON.parse(sessionStorage.getItem("othertodos")) == null
         ? []
-        : JSON.parse(sessionStorage.getItem("todos")),
+        : JSON.parse(sessionStorage.getItem("othertodos")),
   },
   reducers: {},
 
@@ -33,5 +34,5 @@ export const otherTodoSlice = createSlice({
   },
 });
 
-export const {} = otherTodoSlice.actions;
+
 export default otherTodoSlice.reducer;

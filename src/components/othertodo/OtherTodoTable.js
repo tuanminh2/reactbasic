@@ -8,6 +8,7 @@ class OtherTodoTable extends Component {
 
   componentDidMount() {
     if (this.props.otherTodos.length==0) {
+      console.log("-----")
       this.props.getOtherTodos();
     }
   }

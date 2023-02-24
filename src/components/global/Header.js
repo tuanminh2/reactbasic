@@ -61,6 +61,9 @@ class Header extends Component {
             <Link to="/completed" className="text-sm font-semibold leading-6 ">
               Completed
             </Link>
+            <Link to="/othertodos" className="text-sm font-semibold leading-6 ">
+              Other todo
+            </Link>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link

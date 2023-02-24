@@ -36,7 +36,7 @@ class ListItem extends Component {
       return (
         <li>
           <input
-            style={{ border: "1px solid black", width: "80%" }}
+            style={{ border: "1px solid black", width: "80%", color: "black" }}
             type="text"
             id="editValue"
             value={this.state.editValue}

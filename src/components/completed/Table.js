@@ -28,7 +28,7 @@ class Table extends Component {
               <th className="border border-slate-300 ">Task</th>
               <th className="border border-slate-300 ">Start</th>
               <th className="border border-slate-300 ">End</th>
-              <th className="border border-slate-300 ">During</th>
+              <th className="border border-slate-300 ">Time taking</th>
               <th className="border border-slate-300 ">Action</th>
             </tr>
           </thead>

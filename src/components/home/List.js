@@ -19,6 +19,15 @@ class List extends Component {
 
         todo = { ...todo, complete: newVal };
         this.props.addCompletedTodo(todo);
+
+        if (
+          newVal == true &&
+          this.props.todos.filter((todo) => todo.complete === false).length -
+            1 ==
+            0
+        ) {
+          this.props.updateCheckAll(true);
+        }
         return todo;
       }
       return todo;

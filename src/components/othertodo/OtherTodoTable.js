@@ -8,7 +8,7 @@ class OtherTodoTable extends Component {
 
   componentDidMount() {
     if (this.props.otherTodos.length == 0) {
-      this.props.getOtherTodos();
+      this.props.getOtherTodos("limit=5&skip=0");
     }
   }
   //can not call this in child functionalcomponent

@@ -14,16 +14,12 @@ const Pagination = ({ total, callback }) => {
     return "";
   };
 
+  //1 onclick navigate to page
   const hdlPagination = (num) => {
     console.log("PAG onclickbutton => navigate(num)", num);
     navigate(`?page=${num}`);
   };
-
-  useEffect(() => {
-    callback(page);
-    //updaste data
-  }, [page]);
-
+  //2 on page searchparam change setPage state
   useEffect(() => {
     console.log("PAG useEffect:searchParams");
     let newPage = searchParams.get("page");
@@ -31,10 +27,14 @@ const Pagination = ({ total, callback }) => {
       setPage(parseInt(newPage));
     }
   }, [searchParams]);
+  //3 on pageState change callback load new data
+  useEffect(() => {
+    callback(page);
+    //updaste data
+  }, [page]);
 
   return (
     <nav aria-label="Page navigation example">
-     
       <ul class="inline-flex -space-x-px">
         {page > 1 && (
           <li

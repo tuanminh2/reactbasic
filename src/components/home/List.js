@@ -18,7 +18,7 @@ class List extends Component {
         }
 
         todo = { ...todo, complete: newVal };
-        this.props.addCompletedTodo(todo);
+       
 
         if (
           newVal == true &&
@@ -28,6 +28,7 @@ class List extends Component {
         ) {
           this.props.updateCheckAll(true);
         }
+        this.props.addCompletedTodo(todo);
         return todo;
       }
       return todo;

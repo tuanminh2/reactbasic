@@ -14,12 +14,19 @@ class Footer extends Component {
     const { todos } = this.props;
     let newTodos = [...todos];
     newTodos = newTodos.map((todo) => {
-      this.props.addCompletedTodo(todo);
-      return (todo = { ...todo, complete: !this.props.checkAll });
+     
+      const newTodo = { ...todo, complete: !this.props.checkAll };
+
+      this.props.addCompletedTodo(newTodo);
+
+      return newTodo;
     });
+
+    console.log("CURRENT ", this.props.checkAll)
+    this.props.updateCheckAll(!this.props.checkAll);
     this.props.updateTodos(newTodos);
-   
-    this.props.updateCheckAll(!this.props.checkAll)
+
+  
   };
 
   deleteTodo = () => {
@@ -31,12 +38,12 @@ class Footer extends Component {
     this.props.updateTodos(newTodos);
 
     console.log(todos);
-    this.props.updateCheckAll()
+    this.props.updateCheckAll();
   };
 
   render() {
-    const { todos,checkAll } = this.props;
-
+    const { todos, checkAll } = this.props;
+    console.log("CURRENT ", this.props.checkAll)
     return (
       <>
         {todos.length === 0 ? (
@@ -46,9 +53,21 @@ class Footer extends Component {
             {todos.className}
             <div className="row">
               <label htmlFor="">
-                {this.props.checkAll &&   <input type="checkbox" name="all" checked onClick={this.hdlCheckAll} />}
-                {!this.props.checkAll &&   <input type="checkbox" name="all"  onClick={this.hdlCheckAll} />}
-              
+                {this.props.checkAll && (
+                  <input
+                    type="checkbox"
+                    name="all"
+                    checked
+                    onClick={this.hdlCheckAll}
+                  />
+                )}
+                {!this.props.checkAll && (
+                  <input
+                    type="checkbox"
+                    name="all"
+                    onClick={this.hdlCheckAll}
+                  />
+                )}
                 ALL
               </label>
 

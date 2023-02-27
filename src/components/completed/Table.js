@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import { ThemeContext } from "../context/ThemeContextProvider";
 import { connect } from "react-redux";
-import { updateCompletedTodos } from "../../redux/completedTodoSlice";
+
 import { getAPI } from "../../utils/fetchData";
 class Table extends Component {
   static contextType = ThemeContext;
 
-  componentDidMount() {
-    const res = getAPI("https://dummyjson.com/todos");
-  }
-
   render() {
     const { active } = this.context;
     const theme = this.context[active];
-
-    if (this.props.completedTodo.length > 0) {
+    console.log("====>", this.props.completedTodo);
+    if (this.props.completedTodo && this.props.completedTodo.length > 0) {
       return (
         <table
           style={{
@@ -33,20 +29,32 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.completedTodo.map((item, index) => (
-              <tr>
-                <td className="border border-slate-300 ">{item.name}</td>
+            {this.props.completedTodo.map((item, index) => {
+              const newStartDate = new Date(item.startTime);
+              const newEndDate = new Date(item.endTime);
+              return (
+                <tr>
+                  <td className="border border-slate-300 text-center">
+                    {item.name}
+                  </td>
 
-                <td className="border border-slate-300 ">1</td>
-                <td className="border border-slate-300 ">1</td>
-                <td className="border border-slate-300 ">1</td>
-                <td className="border border-slate-300 w-1">
-                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="border border-slate-300 text-center">
+                    {newStartDate.getHours()}:{newStartDate.getMinutes()}:
+                    {newStartDate.getSeconds()}
+                  </td>
+                  <td className="border border-slate-300 text-center">
+                    {newEndDate.getHours()}:{newEndDate.getMinutes()}:
+                    {newEndDate.getSeconds()}
+                  </td>
+                  <td className="border border-slate-300 text-center">1</td>
+                  <td className="border border-slate-300 w-1">
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       );
@@ -57,6 +65,6 @@ const mapStateToProps = (state) => ({
   completedTodo: state.completedTodoSlice.completedTodo,
 });
 
-const mapDispatchToProps = { updateCompletedTodos };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+export default connect(mapStateToProps)(Table);

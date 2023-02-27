@@ -58,8 +58,8 @@ class Header extends Component {
             <Link to="/" className="text-sm font-semibold leading-6 ">
               Todo
             </Link>
-            <Link to="/completed" className="text-sm font-semibold leading-6 ">
-              Completed
+            <Link to="/todaycompleted" className="text-sm font-semibold leading-6 ">
+              Tody's Completed
             </Link>
             <Link to="/othertodos" className="text-sm font-semibold leading-6 ">
               Other todo

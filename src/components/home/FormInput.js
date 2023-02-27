@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
 import { v4 as uuidv4 } from "uuid";
+import { updateCheckAll } from "../../redux/completedTodoSlice";
 class FormInput extends Component {
   constructor(props) {
     super(props);
@@ -14,13 +15,23 @@ class FormInput extends Component {
 
   addTodo = (e) => {
     e.preventDefault();
-  
+
+    const startDate = new Date();
+
     this.props.updateTodos([
       ...this.props.todos,
-      { id: uuidv4(), name: this.todoInput.current.value, complete: false },
+      {
+        id: uuidv4(),
+        name: this.todoInput.current.value,
+        complete: false,
+        startTime: startDate,
+      },
     ]);
 
     this.todoInput.current.focus();
+    if (this.props.checkAll) {
+      this.props.updateCheckAll(false);
+    }
   };
 
   render() {
@@ -42,8 +53,9 @@ class FormInput extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
+  checkAll: state.completedTodoSlice.checkAll,
 });
 
-const mapDispatchToProps = { updateTodos };
+const mapDispatchToProps = { updateTodos, updateCheckAll };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormInput);

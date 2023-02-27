@@ -14,7 +14,7 @@ class App extends Component {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/completed" element={<Completed />} />
+          <Route path="/todaycompleted" element={<Completed />} />
           <Route path="/othertodos" element={<Othertodos />} />
         </Routes>
       </BrowserRouter>

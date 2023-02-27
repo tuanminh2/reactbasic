@@ -10,6 +10,7 @@ export const todoSlice = createSlice({
   reducers: {
     updateTodos: (state, action) => {
       state.todos = action.payload;
+      sessionStorage.setItem("todos", JSON.stringify(state.todos));
     },
   },
 });

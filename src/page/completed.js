@@ -16,8 +16,10 @@ class Completed extends Component {
           height: "1000px",
         }}
       >
-        <h1 style={{ color: theme.bodyTextColor }}>Completed todo </h1>
+        <h1 style={{ color: theme.bodyTextColor }}>Today's completed todo </h1>
         <Table></Table>
+
+      <div className="fix"></div>
       </div>
     );
   }

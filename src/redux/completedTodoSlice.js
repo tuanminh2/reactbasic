@@ -3,16 +3,15 @@ export const completedTodoSlice = createSlice({
   name: "def",
   initialState: {
     completedTodo:
-      JSON.parse(sessionStorage.getItem("completedTodo")) == null
+      JSON.parse(sessionStorage.getItem("todayCompletedTodos")) == null
         ? []
-        : JSON.parse(sessionStorage.getItem("completedTodo")),
-    checkAll: false,
+        : JSON.parse(sessionStorage.getItem("todayCompletedTodos")),
+    checkAll:
+      sessionStorage.getItem("checkAll") == undefined
+        ? false
+        : JSON.parse(sessionStorage.getItem("checkAll")),
   },
   reducers: {
-    updateCompletedTodos: (state, action) => {
-      state.completedTodo = action.payload;
-    },
-
     addCompletedTodo: (state, action) => {
       let tmpArr = [...state.completedTodo];
 
@@ -20,17 +19,24 @@ export const completedTodoSlice = createSlice({
       if (oldElIdx !== -1) {
         tmpArr.splice(oldElIdx, 1);
       } else {
-        tmpArr = [...state.completedTodo, action.payload];
+        tmpArr = [
+          ...state.completedTodo,
+          { ...action.payload, endTime: new Date() },
+        ];
       }
       state.completedTodo = tmpArr;
+      sessionStorage.setItem(
+        "todayCompletedTodos",
+        JSON.stringify(state.completedTodo)
+      );
     },
 
-    updateCheckAll:(state, action)=>{
-      state.checkAll=action.payload
-    }
+    updateCheckAll: (state, action) => {
+      state.checkAll = action.payload;
+      sessionStorage.setItem("checkAll", JSON.stringify(state.checkAll));
+    },
   },
 });
 
-export const { updateCompletedTodos, addCompletedTodo, updateCheckAll } =
-  completedTodoSlice.actions;
+export const { addCompletedTodo, updateCheckAll } = completedTodoSlice.actions;
 export default completedTodoSlice.reducer;

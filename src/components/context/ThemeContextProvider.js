@@ -6,7 +6,7 @@ class ThemeContextProvider extends Component {
   state = {
     light: {
       headerColor: "#e4e4e4",
-      bodyColor: "#eeeeee",
+      bodyColor: "#e4e4e4",
 
       todoColor: "white",
 
@@ -16,11 +16,11 @@ class ThemeContextProvider extends Component {
       bodyTextColor: "black",
     },
     dark: {
-      headerColor: "#01316e",
-      bodyColor: "#01316e",
+      headerColor: "#362e2e",
+      bodyColor: "#362e2e",
 
-      todoColor: "#362e2e",
-      tableColor: "#362e2e",
+      todoColor: "#01316e",
+      tableColor: "#01316e",
 
       headerTextColor: "white",
       bodyTextColor: "white",

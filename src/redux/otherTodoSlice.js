@@ -4,24 +4,17 @@ import { createAction } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-// export const abc = createAsyncThunk("abc", async (_, thunkAPI) => {
-//   console.log("------------->>>>");
-// });
-export const abc =() => {
-  console.log("------------->>>><<<<<");
-};
-
 export const getOtherTodos = createAsyncThunk(
   "fetch_othertodos",
   async (_, thunkAPI) => {
     try {
+      thunkAPI.dispatch({ type: "ALERT", payload: { loading: true } });
       const res = await axios.get("https://dummyjson.com/todos");
-
       console.log(res);
-      thunkAPI.dispatch(abc());
-      return res.data;
+      thunkAPI.dispatch({ type: "ALERT", payload: { loading: false } });
+      return res.data.todos;
     } catch (err) {
-      // return thunkAPI.rejectWithValue({ error: err.message });
+      thunkAPI.dispatch({ type: "ALERT", payload: { error: err.message } });
     }
   }
 );
@@ -38,6 +31,7 @@ export const otherTodoSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getOtherTodos.fulfilled, (state, action) => {
+      console.log("ACTION PYLOAD", action.payload)
       state.otherTodos = action.payload;
     });
   },

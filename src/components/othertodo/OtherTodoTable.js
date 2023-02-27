@@ -7,8 +7,7 @@ class OtherTodoTable extends Component {
   static contextType = ThemeContext;
 
   componentDidMount() {
-    if (this.props.otherTodos.length==0) {
-      console.log("-----")
+    if (this.props.otherTodos.length == 0) {
       this.props.getOtherTodos();
     }
   }
@@ -17,47 +16,41 @@ class OtherTodoTable extends Component {
     console.log("first render");
     const { active } = this.context;
     const theme = this.context[active];
-    return <>abc</>;
-    // if (this.props.completedTodo.length > 0) {
-    //   return (
-    //     <table
-    //       style={{
-    //         backgroundColor: theme.tableColor,
-    //         maxWidth: "800px !important",
-    //       }}
-    //       className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300"
-    //     >
-    //       <thead>
-    //         <tr>
-    //           <th className="border border-slate-300 ">Task</th>
-    //           <th className="border border-slate-300 ">Start</th>
-    //           <th className="border border-slate-300 ">End</th>
-    //           <th className="border border-slate-300 ">During</th>
-    //           <th className="border border-slate-300 ">Action</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {this.props.completedTodo.map((item, index) => (
-    //           <tr>
-    //             <td className="border border-slate-300 ">{item.name}</td>
 
-    //             <td className="border border-slate-300 ">1</td>
-    //             <td className="border border-slate-300 ">1</td>
-    //             <td className="border border-slate-300 ">1</td>
-    //             <td className="border border-slate-300 w-1">
-    //               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-    //                 Delete
-    //               </button>
-    //             </td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   );
-    // } else return <p style={{ textAlign: "center" }}>Nothing to show </p>;
+    if (this.props.otherTodos && this.props.otherTodos.length > 0) {
+      return (
+        <table
+          style={{
+            backgroundColor: theme.tableColor,
+            maxWidth: "800px !important",
+          }}
+          className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300"
+        >
+          <thead>
+            <tr>
+              <th className="border border-slate-300 ">Id</th>
+              <th className="border border-slate-300 ">Todo</th>
+              <th className="border border-slate-300 ">UserId</th>
+              <th className="border border-slate-300 ">Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.otherTodos.map((item, index) => (
+              <tr>
+                <td className="border border-slate-300 ">{item.id}</td>
+                <td className="border border-slate-300 ">{item.todo}</td>
+                <td className="border border-slate-300 ">{item.userId}</td>
+                <td className="border border-slate-300 ">
+                  {item.completed ? "true" : "false"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    } else return <p style={{ textAlign: "center" }}>Nothing to show </p>;
   }
 }
-
 
 const mapStateToProps = (state) => ({
   otherTodos: state.otherTodoSlice.otherTodos,

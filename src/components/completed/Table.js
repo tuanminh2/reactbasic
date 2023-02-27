@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { ThemeContext } from "../context/ThemeContextProvider";
 import { connect } from "react-redux";
 import { updateCompletedTodos } from "../../redux/completedTodoSlice";
+import { getAPI } from "../../utils/fetchData";
 class Table extends Component {
   static contextType = ThemeContext;
+
+  componentDidMount() {
+    const res = getAPI("https://dummyjson.com/todos");
+  }
+
   render() {
     const { active } = this.context;
     const theme = this.context[active];

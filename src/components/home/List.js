@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
-import { addCompletedTodo } from "../../redux/completedTodoSlice";
+import {
+  addCompletedTodo,
+  updateCheckAll,
+} from "../../redux/completedTodoSlice";
 
 class List extends Component {
   switchComplete = (id) => {
     let newTodos = [...this.props.todos];
     newTodos = newTodos.map((todo) => {
-      console.log(id, "  ", todo.id);
       if (todo.id === id) {
-        todo = { ...todo, complete: !todo.complete };
+        let newVal = !todo.complete;
+        if (newVal == false && this.props.checkAll == true) {
+          this.props.updateCheckAll(false);
+        }
+
+        todo = { ...todo, complete: newVal };
         this.props.addCompletedTodo(todo);
         return todo;
       }
@@ -35,7 +42,7 @@ class List extends Component {
 
   render() {
     const { todos } = this.props;
-  
+
     return (
       <ul>
         {todos &&
@@ -58,8 +65,9 @@ class List extends Component {
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
   completedTodo: state.completedTodoSlice.completedTodo,
+  checkAll: state.completedTodoSlice.checkAll,
 });
 
-const mapDispatchToProps = { updateTodos, addCompletedTodo };
+const mapDispatchToProps = { updateTodos, addCompletedTodo, updateCheckAll };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

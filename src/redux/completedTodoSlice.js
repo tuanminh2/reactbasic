@@ -6,6 +6,7 @@ export const completedTodoSlice = createSlice({
       JSON.parse(sessionStorage.getItem("completedTodo")) == null
         ? []
         : JSON.parse(sessionStorage.getItem("completedTodo")),
+    checkAll: false,
   },
   reducers: {
     updateCompletedTodos: (state, action) => {
@@ -23,9 +24,13 @@ export const completedTodoSlice = createSlice({
       }
       state.completedTodo = tmpArr;
     },
+
+    updateCheckAll:(state, action)=>{
+      state.checkAll=action.payload
+    }
   },
 });
 
-export const { updateCompletedTodos, addCompletedTodo } =
+export const { updateCompletedTodos, addCompletedTodo, updateCheckAll } =
   completedTodoSlice.actions;
 export default completedTodoSlice.reducer;

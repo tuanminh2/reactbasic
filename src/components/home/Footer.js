@@ -1,22 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
-
+import {
+  addCompletedTodo,
+  updateCheckAll,
+} from "../../redux/completedTodoSlice";
 class Footer extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { checkAll: false };
   }
 
   hdlCheckAll = () => {
     const { todos } = this.props;
     let newTodos = [...todos];
     newTodos = newTodos.map((todo) => {
-      return (todo = { ...todo, complete: !this.state.checkAll });
+      this.props.addCompletedTodo(todo);
+      return (todo = { ...todo, complete: !this.props.checkAll });
     });
     this.props.updateTodos(newTodos);
-    this.setState({ checkAll: !this.state.checkAll });
+   
+    this.props.updateCheckAll(!this.props.checkAll)
   };
 
   deleteTodo = () => {
@@ -27,13 +30,12 @@ class Footer extends Component {
 
     this.props.updateTodos(newTodos);
 
-  
-    console.log(todos)
-    this.setState({ checkAll: false });
+    console.log(todos);
+    this.props.updateCheckAll()
   };
 
   render() {
-    const { todos } = this.props;
+    const { todos,checkAll } = this.props;
 
     return (
       <>
@@ -44,7 +46,9 @@ class Footer extends Component {
             {todos.className}
             <div className="row">
               <label htmlFor="">
-                <input type="checkbox" name="all" onClick={this.hdlCheckAll} />
+                {this.props.checkAll &&   <input type="checkbox" name="all" checked onClick={this.hdlCheckAll} />}
+                {!this.props.checkAll &&   <input type="checkbox" name="all"  onClick={this.hdlCheckAll} />}
+              
                 ALL
               </label>
 
@@ -65,9 +69,10 @@ class Footer extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
-
+  completedTodo: state.completedTodoSlice.completedTodo,
+  checkAll: state.completedTodoSlice.checkAll,
 });
 
-const mapDispatchToProps = { updateTodos };
+const mapDispatchToProps = { updateTodos, addCompletedTodo, updateCheckAll };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

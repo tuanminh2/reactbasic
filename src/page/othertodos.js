@@ -19,6 +19,7 @@ class Othertodos extends React.Component {
       >
         <h1 style={{ color: theme.bodyTextColor }}>Other todo </h1>
         <OtherTodoTable></OtherTodoTable>
+        
       </div>
     );
   }

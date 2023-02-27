@@ -29,6 +29,9 @@
   padding: 10px 0;
   letter-spacing: 1.3px;
 }
+.inline-flex.-space-x-px li.active {
+  color: crimson;
+}
 
 @import url("./loading.css");
 @import url("./togglethemebtn.css");

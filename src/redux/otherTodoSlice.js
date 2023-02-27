@@ -6,10 +6,13 @@ import axios from "axios";
 
 export const getOtherTodos = createAsyncThunk(
   "fetch_othertodos",
-  async (_, thunkAPI) => {
+  async ( searchStr , thunkAPI) => {
+   
     try {
       thunkAPI.dispatch({ type: "ALERT", payload: { loading: true } });
-      const res = await axios.get("https://dummyjson.com/todos");
+      const res = await axios.get(
+        `https://dummyjson.com/todos?${searchStr}`
+      );
       console.log(res);
       thunkAPI.dispatch({ type: "ALERT", payload: { loading: false } });
       return res.data.todos;
@@ -31,7 +34,7 @@ export const otherTodoSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getOtherTodos.fulfilled, (state, action) => {
-      console.log("ACTION PYLOAD", action.payload)
+      console.log("ACTION PAYLOAD", action.payload);
       state.otherTodos = action.payload;
     });
   },

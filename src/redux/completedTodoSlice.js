@@ -7,7 +7,7 @@ export const completedTodoSlice = createSlice({
         ? []
         : JSON.parse(sessionStorage.getItem("todayCompletedTodos")),
     checkAll:
-      sessionStorage.getItem("checkAll") == undefined
+      typeof sessionStorage.getItem("checkAll") === "undefined"
         ? false
         : JSON.parse(sessionStorage.getItem("checkAll")),
   },

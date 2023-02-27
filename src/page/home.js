@@ -10,6 +10,7 @@ class Home extends Component {
   render() {
     const { active } = this.context;
     const theme = this.context[active];
+    console.log("---------",sessionStorage.getItem("checkAll"))
     return (
       <div
         className=""

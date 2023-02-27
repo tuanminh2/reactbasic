@@ -22,7 +22,7 @@ class Footer extends Component {
       return newTodo;
     });
 
-    console.log("CURRENT ", this.props.checkAll)
+    
     this.props.updateCheckAll(!this.props.checkAll);
     this.props.updateTodos(newTodos);
 
@@ -38,12 +38,12 @@ class Footer extends Component {
     this.props.updateTodos(newTodos);
 
     console.log(todos);
-    this.props.updateCheckAll();
+
   };
 
   render() {
     const { todos, checkAll } = this.props;
-    console.log("CURRENT ", this.props.checkAll)
+   
     return (
       <>
         {todos.length === 0 ? (

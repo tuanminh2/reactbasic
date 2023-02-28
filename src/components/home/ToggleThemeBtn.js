@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ThemeContext } from "../context/ThemeContextProvider";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 
 class ToggleThemeBtn extends Component {
   static contextType = ThemeContext;

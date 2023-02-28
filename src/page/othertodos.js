@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeContext } from "../components/context/ThemeContextProvider";
+import { ThemeContext } from "../context/ThemeContextProvider";
 import OtherTodoTable from "../components/othertodo/OtherTodoTable";
 class Othertodos extends React.Component {
   static contextType = ThemeContext;

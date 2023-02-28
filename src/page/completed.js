@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Table from "../components/completed/Table";
-import { ThemeContext } from "../components/context/ThemeContextProvider";
+import { ThemeContext } from "../context/ThemeContextProvider";
 class Completed extends Component {
   static contextType = ThemeContext;
   render() {

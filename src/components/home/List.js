@@ -54,7 +54,7 @@ class List extends Component {
     const { todos } = this.props;
 
     return (
-      <ul>
+      <ul className="listUl">
         {todos &&
           todos.map((todo, index) => {
             return (

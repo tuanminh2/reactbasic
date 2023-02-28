@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ThemeContext } from "../context/ThemeContextProvider";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 import { connect } from "react-redux";
 
 import { getAPI } from "../../utils/fetchData";

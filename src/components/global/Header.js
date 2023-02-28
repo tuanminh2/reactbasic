@@ -1,7 +1,7 @@
 import { Component } from "react";
 import ToggleThemeBtn from "../home/ToggleThemeBtn";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../context/ThemeContextProvider";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 class Header extends Component {
   static contextType = ThemeContext;
   render() {
@@ -11,10 +11,9 @@ class Header extends Component {
       <header
         className="bg-white"
         style={{
-
           backgroundColor: theme.headerColor,
           color: theme.headerTextColor,
-         
+
           width: "100%",
         }}
       >
@@ -58,7 +57,10 @@ class Header extends Component {
             <Link to="/" className="text-sm font-semibold leading-6 ">
               Todo
             </Link>
-            <Link to="/todaycompleted" className="text-sm font-semibold leading-6 ">
+            <Link
+              to="/todaycompleted"
+              className="text-sm font-semibold leading-6 "
+            >
               Tody's Completed
             </Link>
             <Link to="/othertodos" className="text-sm font-semibold leading-6 ">
@@ -67,7 +69,7 @@ class Header extends Component {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link
-              to="#"
+              to="/login"
               className="text-sm font-semibold leading-6 "
               style={{
                 color: "crimson",
@@ -79,12 +81,11 @@ class Header extends Component {
                 border: "1px solid crimson",
               }}
             >
-              Log in
+              login
             </Link>
             <ToggleThemeBtn></ToggleThemeBtn>
           </div>
         </nav>
-        
       </header>
     );
   }

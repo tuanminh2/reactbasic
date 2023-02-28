@@ -36,7 +36,7 @@ class FormInput extends Component {
 
   render() {
     return (
-      <form autoComplete="off" onSubmit={this.addTodo}>
+      <form class="forminput"autoComplete="off" onSubmit={this.addTodo}>
         <input
           ref={this.todoInput}
           type="text"

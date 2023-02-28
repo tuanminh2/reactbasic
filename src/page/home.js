@@ -3,14 +3,14 @@ import FormInput from "../components/home/FormInput";
 import List from "../components/home/List";
 import Footer from "../components/home/Footer";
 import ToggleThemeBtn from "../components/home/ToggleThemeBtn";
-import { ThemeContext } from "../components/context/ThemeContextProvider";
+import { ThemeContext } from "../context/ThemeContextProvider";
 import "./home.css";
 class Home extends Component {
   static contextType = ThemeContext;
   render() {
     const { active } = this.context;
     const theme = this.context[active];
-    console.log("---------",sessionStorage.getItem("checkAll"))
+   
     return (
       <div
         className=""

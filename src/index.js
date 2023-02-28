@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import reduxStore from "./redux/store";
 
-import ThemeContextProvider from "./components/context/ThemeContextProvider";
+import ThemeContextProvider from "./context/ThemeContextProvider";
+import AuthContextProvider from "./context/AuthContextProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={reduxStore}>
-      <ThemeContextProvider>
-        <App />
-      </ThemeContextProvider>
+      <AuthContextProvider>
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
+      </AuthContextProvider>
     </Provider>
   </React.StrictMode>
 );

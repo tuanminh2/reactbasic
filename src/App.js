@@ -5,6 +5,7 @@ import Header from "./components/global/Header";
 import Completed from "./page/completed.js";
 import Othertodos from "./page/othertodos.js";
 import { Alert } from "./components/alert/Alert.js";
+import Login from "./page/login.js";
 class App extends Component {
   render() {
     return (
@@ -14,6 +15,7 @@ class App extends Component {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/todaycompleted" element={<Completed />} />
           <Route path="/othertodos" element={<Othertodos />} />
         </Routes>

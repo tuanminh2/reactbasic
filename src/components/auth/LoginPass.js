@@ -34,7 +34,7 @@ const LoginPass = () => {
             name="account"
             value={account}
             onChange={hdlChangInput}
-            style={{ width: "100%" }}
+            style={{ width: "100%", border: "1px solid black" }}
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ const LoginPass = () => {
             name="password"
             value={password}
             onChange={hdlChangInput}
-            style={{ width: "100%" }}
+            style={{ width: "100%" , border: "1px solid black"}}
           />
           <small onClick={() => setTypePass(!typePass)}>
             {typePass ? "Hide" : "Show"}

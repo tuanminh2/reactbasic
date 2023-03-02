@@ -18,7 +18,17 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 
-import "./config/database.js";
+const uri = process.env.MONGODB_URL;
+console.log(uri);
+mongoose
+  .connect(`${uri}`)
+  .then((res) => {
+    console.log("connect db success");
+  })
+  .catch((err) => {
+    console.log("connect error", err);
+  });
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log("connected.....");

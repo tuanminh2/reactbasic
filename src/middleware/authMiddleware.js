@@ -6,7 +6,7 @@ export const decodeToken = async (req, res, next) => {
   try {
     const decodeValue = await admin.auth().verifyIdToken(token);
     if (decodeValue) {
-      req.user = decodeValue;
+      req.usergg = decodeValue;
       console.log("Success ", decodeValue);
       return next();
     }

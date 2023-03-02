@@ -7,34 +7,30 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+import axios from "axios"
 import { auth } from "../config/fb.js";
+import { postAPI } from "../utils/fetchData.js";
 export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
   state = {
     user: {},
+    accessToken: ""
+
   };
 
-  changeUser = (newUser) => {
-    this.setState({ user: newUser });
-  };
 
-  componentDidMount() {
-    this.authUnsub = auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        this.setState({ user });
-        user.getIdToken().then((token) => console.log("idToken", token));
-      } else {
-        this.setState({ user: null });
-      }
-    });
-
-    this.authUnsub();
+  changeAuth(user, accessToken) {
+    this.setState({ user, accessToken })
   }
-  async googleSignIn() {
+  googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const res = await signInWithPopup(auth, provider);
+    const idToken = res.user.accessToken
+    const loginRes = await postAPI("auth/google_login", { idToken })
+    const { user, accessToken } = loginRes.data
+    this.setState({ user, accessToken })
+
 
   }
 
@@ -43,7 +39,7 @@ class AuthContextProvider extends Component {
       <AuthContext.Provider
         value={{
           ...this.state,
-          changeUser: this.changeUser,
+          changeAuth: this.changeAuth,
           googleSignIn: this.googleSignIn,
         }}
       >

@@ -38,6 +38,7 @@ class Login extends React.Component {
                           LOGIN
                         </h3>
                         <SocialLogin
+                          
                           googleSignIn={authContextState.googleSignIn}
                         ></SocialLogin>
                         <LoginPass />

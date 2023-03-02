@@ -1,7 +1,15 @@
 import React from "react";
 
 class SocialLogin extends React.Component {
+  constructor(props) {
+    super(props);
+
+
+
+  }
+
   render() {
+
     return (
       <div onClick={this.props.googleSignIn} class="google-btn">
         <div class="google-icon-wrapper">

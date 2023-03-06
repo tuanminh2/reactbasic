@@ -1,16 +1,16 @@
 import { Component } from "react";
-import FormInput from "../components/home/FormInput";
-import List from "../components/home/List";
-import Footer from "../components/home/Footer";
-import ToggleThemeBtn from "../components/home/ToggleThemeBtn";
+import FormInput from "../components/todolist/FormInput";
+import List from "../components/todolist/List";
+import Footer from "../components/todolist/Footer";
+import ToggleThemeBtn from "../components/todolist/ToggleThemeBtn";
 import { ThemeContext } from "../context/ThemeContextProvider";
-import "./home.css";
-class Home extends Component {
+
+class todolist extends Component {
   static contextType = ThemeContext;
   render() {
     const { active } = this.context;
     const theme = this.context[active];
-   
+
     return (
       <div
         className=""
@@ -19,7 +19,6 @@ class Home extends Component {
           backgroundColor: theme.bodyColor,
           color: theme.bodyTextColor,
           height: "1000px",
-         
         }}
       >
         <div className="App" style={{ backgroundColor: theme.todoColor }}>
@@ -42,4 +41,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default todolist;

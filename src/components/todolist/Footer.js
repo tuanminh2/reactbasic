@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTodos } from "../../redux/todoSlice";
-import {
-  addCompletedTodo,
-  updateCheckAll,
-} from "../../redux/completedTodoSlice";
+import { updateCheckAll } from "../../redux/completedTodoSlice";
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -14,19 +11,13 @@ class Footer extends Component {
     const { todos } = this.props;
     let newTodos = [...todos];
     newTodos = newTodos.map((todo) => {
-     
       const newTodo = { ...todo, complete: !this.props.checkAll };
-
-      this.props.addCompletedTodo(newTodo);
 
       return newTodo;
     });
 
-    
     this.props.updateCheckAll(!this.props.checkAll);
     this.props.updateTodos(newTodos);
-
-  
   };
 
   deleteTodo = () => {
@@ -38,12 +29,11 @@ class Footer extends Component {
     this.props.updateTodos(newTodos);
 
     console.log(todos);
-
   };
 
   render() {
     const { todos, checkAll } = this.props;
-   
+
     return (
       <>
         {todos.length === 0 ? (
@@ -88,10 +78,9 @@ class Footer extends Component {
 
 const mapStateToProps = (state) => ({
   todos: state.todoSlice.todos,
-  completedTodo: state.completedTodoSlice.completedTodo,
   checkAll: state.completedTodoSlice.checkAll,
 });
 
-const mapDispatchToProps = { updateTodos, addCompletedTodo, updateCheckAll };
+const mapDispatchToProps = { updateTodos, updateCheckAll };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

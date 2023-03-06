@@ -38,5 +38,5 @@ export const completedTodoSlice = createSlice({
   },
 });
 
-export const { addCompletedTodo, updateCheckAll } = completedTodoSlice.actions;
+export const { updateCheckAll } = completedTodoSlice.actions;
 export default completedTodoSlice.reducer;

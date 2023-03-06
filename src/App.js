@@ -1,25 +1,23 @@
 import { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./page/home.js";
+import Todolist from "./page/todolist.js";
 import Header from "./components/global/Header";
-import Completed from "./page/completed.js";
-import Othertodos from "./page/othertodos.js";
+
+
 import { Alert } from "./components/alert/Alert.js";
 import Login from "./page/login.js";
-import Main from "./page/main.js";
+import IndexPage from "./page/index.js";
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <Alert></Alert>
-        <Header></Header>
+        {/* <Header></Header> */}
 
         <Routes>
-          <Route path="/" element={<Main />} />
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/todaycompleted" element={<Completed />} />
-          <Route path="/othertodos" element={<Othertodos />} /> */}
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/todo" element={<Todolist />} />
+        
         </Routes>
       </BrowserRouter>
     );

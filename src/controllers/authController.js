@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const authCtrl = {
+  //stable
   googleLogin: async (req, res) => {
     try {
 

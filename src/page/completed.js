@@ -18,8 +18,14 @@ class Completed extends Component {
       >
         <h1 style={{ color: theme.bodyTextColor }}>Today's completed todo </h1>
         <Table></Table>
-
-      <div className="fix"></div>
+        <div className="justify-center w-100 ">
+          <button
+            style={{ marginLeft: "1000px" }}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Save for today
+          </button>
+        </div>
       </div>
     );
   }

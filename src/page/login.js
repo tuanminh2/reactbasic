@@ -5,10 +5,11 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { ThemeContext } from "../context/ThemeContextProvider";
 
 import SocialLogin from "../components/auth/SocialLogin";
-
+import { withRouter } from "../components/global/withRouter";
 class Login extends React.Component {
 
   render() {
+    
     return (
       <AuthContext.Consumer>
         {(authContextState) => {
@@ -38,7 +39,7 @@ class Login extends React.Component {
                           LOGIN
                         </h3>
                         <SocialLogin
-                          
+                          navigate={this.props.router.navigate}
                           googleSignIn={authContextState.googleSignIn}
                         ></SocialLogin>
                         <LoginPass />
@@ -69,4 +70,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

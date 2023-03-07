@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
-import { updateTodos } from "../../redux/todoSlice";
-import { updateCheckAll } from "../../redux/completedTodoSlice";
+import { updateTodos } from "../../redux/todoslices/todoSlice";
+import { updateCheckAll } from "../../redux/todoslices/completedTodoSlice";
 
 class List extends Component {
   switchComplete = (id) => {

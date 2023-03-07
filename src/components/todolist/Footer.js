@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateTodos } from "../../redux/todoSlice";
-import { updateCheckAll } from "../../redux/completedTodoSlice";
+import { updateTodos } from "../../redux/todoslices/todoSlice";
+import { updateCheckAll } from "../../redux/todoslices/completedTodoSlice";
 class Footer extends Component {
   constructor(props) {
     super(props);

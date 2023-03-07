@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateTodos } from "../../redux/todoSlice";
+import { updateTodos } from "../../redux/todoslices/todoSlice";
 import { v4 as uuidv4 } from "uuid";
-import { updateCheckAll } from "../../redux/completedTodoSlice";
+import { updateCheckAll } from "../../redux/todoslices/completedTodoSlice";
 class FormInput extends Component {
   constructor(props) {
     super(props);

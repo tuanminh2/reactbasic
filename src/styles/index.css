@@ -86,9 +86,12 @@
 @import url("./todolist.css");
 @import url("./auth.css");
 
+div[modal-backdrop] {
+  opacity: 0 !important;
+}
+
 .fc {
   width: 100%;
-  
 }
 
 .fc td {
@@ -174,4 +177,28 @@ button:focus {
 .fc-axis {
   color: #a8b5c3;
   font-size: 14px;
+}
+
+/* react datepicker */
+.react-datepicker-wrapper {
+  display: inline-block;
+}
+
+.react-datepicker__input-container input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* react datepicker */
+.alldayeventstyle::before {
+  content: "All Day";
+  margin-right: 28px;
+  color: crimson;
+}
+.alldayeventstyle {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }

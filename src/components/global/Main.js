@@ -1,11 +1,18 @@
 import React from "react";
+import AddEvent from "../modal/AddEvent";
 import Calendar from "../calendar/Calendar";
 const Main = () => {
   return (
-    <div class="p-1 sm:ml-64 border-2 border-yellow-600   dark:border-gray-700 mt-14">
+    <div class="p-1 sm:ml-64 border-2 border-yellow-600   mt-14">
       <div
-        style={{ border: "2px solid blue" , width:"100%"}}
-        class=" flex items-center  mb-4  bg-gray-50 dark:bg-gray-800"
+        style={{ width: "100%" }}
+        class=" flex items-center  mb-2  "
+      >
+        <AddEvent />
+      </div>
+      <div
+        style={{ width: "100%" }}
+        class=" flex items-center  mb-4  bg-gray-50 "
       >
         <Calendar></Calendar>
       </div>

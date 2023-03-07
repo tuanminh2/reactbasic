@@ -7,9 +7,7 @@ import { ThemeContext } from "../context/ThemeContextProvider";
 import SocialLogin from "../components/auth/SocialLogin";
 import { withRouter } from "../components/global/withRouter";
 class Login extends React.Component {
-
   render() {
-    
     return (
       <AuthContext.Consumer>
         {(authContextState) => {
@@ -21,10 +19,8 @@ class Login extends React.Component {
                 return (
                   <div
                     style={{
-                      borderTop: "2px solid crimson",
                       backgroundColor: theme.bodyColor,
-                      color: theme.bodyTextColor,
-                      height: "1000px",
+                      height: "100vh",
                     }}
                   >
                     <div
@@ -34,7 +30,10 @@ class Login extends React.Component {
                         color: "black",
                       }}
                     >
-                      <div className="auth_box">
+                      <div
+                        className="auth_box"
+                        style={{ backgroundColor: "blue", margin: "100px auto" }}
+                      >
                         <h3 className="text-uppecase text-center mb-4">
                           LOGIN
                         </h3>

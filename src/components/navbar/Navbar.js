@@ -3,11 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <div>
-
-      <nav
-        style={{ border: "1px solid red" }}
-        class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 "
-      >
+      <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 ">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
@@ -44,7 +40,7 @@ const Navbar = () => {
                 </span>
               </a>
             </div>
-            <div class="flex items-center">
+            {/* <div class="flex items-center">
               <div class="flex items-center ml-3">
                 <div>
                   <button
@@ -72,41 +68,8 @@ const Navbar = () => {
                     >
                       Neil Sims
                     </p>
-                    <p
-                      class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                      role="none"
-                    >
-                      neil.sims@flowbite.com
-                    </p>
                   </div>
                   <ul class="py-1" role="none">
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Earnings
-                      </a>
-                    </li>
                     <li>
                       <a
                         href="#"
@@ -119,7 +82,7 @@ const Navbar = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>

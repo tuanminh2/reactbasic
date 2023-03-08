@@ -8,7 +8,8 @@
 
 .auth_page .auth_box {
   background: #fff;
-  max-width: 400px;
+  margin: 100px auto;
+  max-width: 600px;
   width: 100%;
   border: 1px solid #ddd;
   padding: 2.5rem 1.5rem;
@@ -26,8 +27,7 @@
   opacity: 0.5;
 }
 
-.loginPassForm{
+.loginPassForm {
   display: flex;
   flex-direction: column;
-
 }

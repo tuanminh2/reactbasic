@@ -13,7 +13,7 @@ function NavigateToNewRoute({
   authContextState,
 }) {
   const navigate = useNavigate();
-  const { user, avatar, signOut, accessToken } = authContextState;
+  const { user , signOut, accessToken } = authContextState;
   return (
     <header
       className="bg-white"

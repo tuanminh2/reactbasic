@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useSelector } from "react-redux";
 const Calendar = () => {
   const { events } = useSelector((state) => state.eventSlice);
+
   const eventClassNames= function(arg) {
     if (arg.event.allDay) {
       return [ 'alldayeventstyle' ]

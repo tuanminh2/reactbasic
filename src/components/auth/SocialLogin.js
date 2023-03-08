@@ -1,5 +1,5 @@
 import React from "react";
-
+import { connect } from "react-redux";
 class SocialLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +9,13 @@ class SocialLogin extends React.Component {
     return (
       <div
         onClick={() => {
-          this.props.googleSignIn();
-          this.props.navigate("/");
+          try {
+       
+            this.props.googleSignIn();
+        
+          } catch (err) {
+           console.log(err)
+          }
         }}
         class="google-btn"
       >
@@ -28,4 +33,4 @@ class SocialLogin extends React.Component {
   }
 }
 
-export default SocialLogin;
+export default connect()(SocialLogin);

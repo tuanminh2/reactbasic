@@ -32,7 +32,7 @@ class Login extends React.Component {
                     >
                       <div
                         className="auth_box"
-                        style={{ backgroundColor: "blue", margin: "100px auto" }}
+                       
                       >
                         <h3 className="text-uppecase text-center mb-4">
                           LOGIN

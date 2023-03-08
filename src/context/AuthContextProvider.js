@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { auth } from "../config/fb.js";
 import { postAPI } from "../utils/fetchData.js";
+import { connect } from "react-redux";
 export const AuthContext = createContext();
 
 class AuthContextProvider extends Component {
@@ -22,17 +23,21 @@ class AuthContextProvider extends Component {
     this.setState({ user, accessToken });
   }
   googleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    const res = await signInWithPopup(auth, provider);
-    const idToken = res.user.accessToken;
-    const loginRes = await postAPI("auth/google_login", { idToken });
-    const { user, accessToken } = loginRes.data;
-
-    console.log("login response from server", loginRes)
-    this.setState({ user, accessToken });
+    try {
+      const provider = new GoogleAuthProvider();
+      const res = await signInWithPopup(auth, provider);
+      const idToken = res.user.accessToken;
+      this.props.dispatch({ type: "ALERT", payload: { loading: true } });
+      const loginRes = await postAPI("auth/google_login", { idToken });
+      const { user, accessToken } = loginRes.data;
+      console.log("login response from server", loginRes);
+      this.setState({ user, accessToken });
+      this.props.dispatch({ type: "ALERT", payload: { loading: false } });
+    } catch (err) {
+      console.log(err);
+    }
   };
   signOut = () => {
-    console.log("-------------><><>><><>");
     this.setState({ user: {}, accessToken: "" });
   };
 
@@ -52,4 +57,4 @@ class AuthContextProvider extends Component {
   }
 }
 
-export default AuthContextProvider;
+export default connect()(AuthContextProvider);

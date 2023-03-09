@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContextProvider";
+
 const SideBar = () => {
   const { user, accessToken, signOut } = useContext(AuthContext);
   return (
@@ -119,6 +120,7 @@ const SideBar = () => {
           {/* authen */}
         </ul>
       </div>
+
     </aside>
   );
 };

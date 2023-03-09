@@ -8,6 +8,7 @@ import Login from "./page/login.js";
 import IndexPage from "./page/index.js";
 import Navbar from "./components/navbar/Navbar.js";
 import SideBar from "./components/sidebar/SideBar.js";
+
 class App extends Component {
   render() {
     return (

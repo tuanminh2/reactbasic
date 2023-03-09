@@ -3,9 +3,11 @@ import EventModal from "./EventModal";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addEvent } from "../../redux/eventSlice";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import moment from "moment";
-import { uuidv4 } from "@firebase/util";
-const AddEvent = () => {
+import { updateSelectedEvent } from "../../redux/eventSlice";
+const EditEvent = () => {
 
   const [color, setColor] = useState("");
   const [title, setTitle] = useState("");
@@ -14,6 +16,9 @@ const AddEvent = () => {
   const [allDay, setAllDay] = useState(false);
 
   const dispatch = useDispatch();
+
+
+  const { events, selectedEvent } = useSelector((state) => state.eventSlice);
   const hdlDateChange = (startOrEnd) => (event) => {
     if (!allDay) {
       if (startOrEnd === "startdate") {
@@ -38,10 +43,10 @@ const AddEvent = () => {
     }
   };
 
-  const hdlSubmitAddEvent = (event) => {
+  const hdlSubmitUpdateEvent = () => {
 
     const newEvent = {
-      id: uuidv4(),
+      id: selectedEvent.id,
       title,
       textColor: "white",
       backgroundColor: color,
@@ -49,21 +54,42 @@ const AddEvent = () => {
       start: moment(startDate).format(),
       end: moment(endDate).format(),
     };
-    dispatch(addEvent(newEvent));
+    dispatch(updateSelectedEvent(newEvent));
   };
+
+
+
+  useEffect(() => {
+
+    if (Object.keys(selectedEvent).length) {
+      let color = selectedEvent.backgroundColor
+
+      setColor(color)
+      setTitle(selectedEvent.title)
+      setAllDay(selectedEvent.allDay)
+      let start = `${moment(new Date(selectedEvent.start)).format()}`
+      let end = ''
+      if (!selectedEvent.allDay) {
+        console.log(selectedEvent)
+
+
+        end = `${moment(new Date(selectedEvent.end)).format()}`
+      } else {
+
+
+        end = `${moment(new Date(selectedEvent.end)).format("YYYY-MM-DD")}`
+      }
+
+      setStartDate(new Date(start))
+      setEndDate(new Date(end))
+    }
+  }, [selectedEvent, events]);
   return (
     <div>
-      <button
-        data-modal-target="add-event-modal"
-        data-modal-toggle="add-event-modal"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Add Event
-      </button>
+
       <EventModal
-        modalTitle="Add event"
-        modalId="add-event-modal"
+        modalTitle="Edit event"
+        modalId="edit-event-modal"
         startDate={startDate}
         endDate={endDate}
         hdlDateChange={hdlDateChange}
@@ -71,10 +97,10 @@ const AddEvent = () => {
         title={title}
         color={color}
         allDay={allDay}
-        action={hdlSubmitAddEvent}
+        action={hdlSubmitUpdateEvent}
       ></EventModal>
     </div>
   );
 };
 
-export default AddEvent;
+export default EditEvent;

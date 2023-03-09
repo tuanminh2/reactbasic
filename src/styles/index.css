@@ -29,6 +29,7 @@
   padding: 10px 0;
   letter-spacing: 1.3px;
 }
+
 .inline-flex.-space-x-px li.active {
   color: crimson;
 }
@@ -42,6 +43,7 @@
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
 .google-btn .google-icon-wrapper {
   position: absolute;
   margin-top: 1px;
@@ -51,6 +53,7 @@
   border-radius: 2px;
   background-color: #fff;
 }
+
 .google-btn .google-icon {
   position: absolute;
   margin-top: 11px;
@@ -58,6 +61,7 @@
   width: 18px;
   height: 18px;
 }
+
 .google-btn .btn-text {
   float: right;
   margin: 11px 11px 0 0;
@@ -65,9 +69,11 @@
   font-size: 14px;
   letter-spacing: 0.1px;
 }
+
 .google-btn:hover {
   box-shadow: 0 0 6px #4285f4;
 }
+
 .google-btn:active {
   background: #1669f2;
 }
@@ -79,6 +85,7 @@
 
   border-radius: 50%;
 }
+
 /* -------- */
 
 @import url("./loading.css");
@@ -195,8 +202,9 @@ button:focus {
 .alldayeventstyle::before {
   content: "All Day";
   margin-right: 28px;
-  color: crimson;
+  color: "white";
 }
+
 .alldayeventstyle {
   display: flex !important;
   justify-content: center !important;

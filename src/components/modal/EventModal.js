@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const EventModal = (props) => {
   const {
+    modalTitle,
+    modalId,
     hdlDateChange,
     hdlInputChange,
     startDate,
@@ -10,11 +12,12 @@ const EventModal = (props) => {
     title,
     color,
     allDay,
-    hdlSubmitAddEvent,
+    action,
   } = props;
+  console.log("coolor now", color)
   return (
     <div
-      id="add-event-form"
+      id={modalId}
       data-modal-placement="top-center"
       tabindex="-1"
       aria-hidden="true"
@@ -24,12 +27,12 @@ const EventModal = (props) => {
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Add Event
+             {modalTitle}
             </h3>
             <button
               type="button"
               class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="add-event-form"
+              data-modal-hide={modalId}
             >
               <svg
                 aria-hidden="true"
@@ -102,9 +105,9 @@ const EventModal = (props) => {
                 class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option value="">Choose a color</option>
-                <option value="red">Red</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
+                <option value="red" style={{ color: "red" }}>Red</option>
+                <option value="green" style={{ color: "green" }}>Green</option>
+                <option value="blue" style={{ color: "blue" }}>Blue</option>
               </select>
 
               <div class="flex space-x-4">
@@ -115,21 +118,16 @@ const EventModal = (props) => {
                   >
                     Start
                   </label>
-                  {!allDay ? (
-                    <DatePicker
-                      showTimeSelect
-                      timeFormat="p"
-                      timeIntervals={1}
-                      dateFormat="Pp"
-                      selected={startDate}
-                      onChange={(event) => hdlDateChange("startdate")(event)}
-                    />
-                  ) : (
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(event) => hdlDateChange("startdate")(event)}
-                    />
-                  )}
+
+                  <DatePicker
+                    showTimeSelect
+                    timeFormat="p"
+                    timeIntervals={1}
+                    dateFormat="Pp"
+                    selected={startDate}
+                    onChange={(event) => hdlDateChange("startdate")(event)}
+                  />
+
                 </div>
                 <div class="w-1/2">
                   <label
@@ -160,15 +158,15 @@ const EventModal = (props) => {
 
           <div class="flex justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <button
-              data-modal-hide="add-event-form"
+              data-modal-hide={modalId}
               type="button"
-              onClick={hdlSubmitAddEvent}
+              onClick={action}
               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Save
             </button>
             <button
-              data-modal-hide="add-event-form"
+              data-modal-hide={modalId}
               type="button"
               class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
             >

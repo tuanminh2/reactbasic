@@ -7,9 +7,10 @@ export const eventSlice = createSlice({
         ? []
         : JSON.parse(sessionStorage.getItem("events")),
 
-    selectedEvent: JSON.parse(sessionStorage.getItem("selectedEvent")) == null
-      ? {}
-      : JSON.parse(sessionStorage.getItem("selectedEvent")),
+    selectedEvent:
+      JSON.parse(sessionStorage.getItem("selectedEvent")) == null
+        ? {}
+        : JSON.parse(sessionStorage.getItem("selectedEvent")),
 
   },
   reducers: {
@@ -18,15 +19,15 @@ export const eventSlice = createSlice({
       sessionStorage.setItem("events", JSON.stringify(state.events));
     },
     setSelectedEvent: (state, action) => {
-
       state.selectedEvent = action.payload;
-      sessionStorage.setItem("selectedEvent", JSON.stringify(state.selectedEvent));
+      sessionStorage.setItem(
+        "selectedEvent",
+        JSON.stringify(state.selectedEvent)
+      );
     },
 
     updateSelectedEvent: (state, action) => {
-
       const updateEvents = state.events.map((e) => {
-
         return e.id == action.payload.id ? action.payload : e;
       });
       state.events = [...updateEvents];
@@ -35,13 +36,19 @@ export const eventSlice = createSlice({
 
     deleteEvent: (state, action) => {
       const newEvents = state.events.filter((e) => e.id != action.payload);
-      state.events = [...newEvents]
-      state.selectedEvent = {}
+      state.events = [...newEvents];
+      state.selectedEvent = {};
       sessionStorage.setItem("events", JSON.stringify(state.events));
-      sessionStorage.setItem("selectedEvent", JSON.stringify(state.selectedEvent));
-    }
+      sessionStorage.setItem(
+        "selectedEvent",
+        JSON.stringify(state.selectedEvent)
+      );
+    },
+
+   
   },
 });
 
-export const { addEvent, setSelectedEvent, updateSelectedEvent, deleteEvent } = eventSlice.actions;
+export const { addEvent, setSelectedEvent, updateSelectedEvent, deleteEvent } =
+  eventSlice.actions;
 export default eventSlice.reducer;

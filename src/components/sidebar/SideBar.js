@@ -116,6 +116,7 @@ const SideBar = () => {
               </li>
               <li>
                 <Link
+                  to="/register"
                   class={`flex items-center p-2 text-base font-normal text-gray-900 rounded-lg ${
                     themeState.active == "light"
                       ? "hover:bg-gray-100"

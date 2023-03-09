@@ -7,9 +7,14 @@ import { setSelectedEvent } from "../../redux/eventSlice";
 import { useSelector } from "react-redux";
 import ByClickEventModal from "../modal/ByClickEventModal";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 const Calendar = () => {
   const { events } = useSelector((state) => state.eventSlice);
   const dispatch = useDispatch();
+  const [showActionModal, setShowActionModal] = useState(false);
+  const toggleShowActionModal = () => {
+    setShowActionModal(!showActionModal);
+  };
   const eventClassNames = function (arg) {
     if (arg.event.allDay) {
       return ["alldayeventstyle"];
@@ -21,12 +26,11 @@ const Calendar = () => {
   const hdlEventClick = (info) => {
     const event = events.find((e) => e.id === info.event.id);
     dispatch(setSelectedEvent(event));
-    document.getElementById("showActionFormBtn").click();
+    toggleShowActionModal();
   };
   return (
     <>
       <FullCalendar
-       
         plugins={[daygridPlugin, timegridPlugin, interactionPlugin]}
         headerToolbar={{
           left: "prev,next today",
@@ -41,6 +45,12 @@ const Calendar = () => {
         eventClick={hdlEventClick}
         dayMaxEvents={2}
       ></FullCalendar>
+      {showActionModal && (
+        <ByClickEventModal
+        setShowActionModal={setShowActionModal}
+          toggleShowActionModal={toggleShowActionModal}
+        ></ByClickEventModal>
+      )}
     </>
   );
 };

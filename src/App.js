@@ -8,7 +8,7 @@ import Login from "./page/login.js";
 import IndexPage from "./page/index.js";
 import Navbar from "./components/navbar/Navbar.js";
 import SideBar from "./components/sidebar/SideBar.js";
-
+import Register from "./page/register.js";
 class App extends Component {
   render() {
     return (
@@ -21,6 +21,7 @@ class App extends Component {
           <Route path="/" element={<IndexPage />} />
           <Route path="/todo" element={<Todolist />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     );

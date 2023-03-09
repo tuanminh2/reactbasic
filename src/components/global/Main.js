@@ -18,17 +18,14 @@ const Main = () => {
       }}
       class="p-1 sm:ml-56 border-2   mt-14"
     >
-      <div style={{ width: "100%" }} class=" flex items-center  mb-2  ">
-        <AddEvent />
-        <EditEvent></EditEvent>
-        <ByClickEventModal></ByClickEventModal>
-      </div>
+      <AddEvent />
+      {/* <EditEvent></EditEvent> */}
+
       <div
         style={{
           width: "90%",
           margin: "0 auto",
           backgroundColor: calendarColor,
-          color: theme["bodyTextColor"],
         }}
         class=" flex items-center  mb-4   "
       >

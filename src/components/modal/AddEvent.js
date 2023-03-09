@@ -6,8 +6,8 @@ import { addEvent } from "../../redux/eventSlice";
 import moment from "moment";
 import { uuidv4 } from "@firebase/util";
 const AddEvent = () => {
-
   const [color, setColor] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -39,7 +39,6 @@ const AddEvent = () => {
   };
 
   const hdlSubmitAddEvent = (event) => {
-
     const newEvent = {
       id: uuidv4(),
       title,
@@ -50,29 +49,38 @@ const AddEvent = () => {
       end: moment(endDate).format(),
     };
     dispatch(addEvent(newEvent));
+    setShowModal(false);
+  };
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
   };
   return (
     <div>
-      <button
-        data-modal-target="add-event-modal"
-        data-modal-toggle="add-event-modal"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Add Event
-      </button>
-      <EventModal
-        modalTitle="Add event"
-        modalId="add-event-modal"
-        startDate={startDate}
-        endDate={endDate}
-        hdlDateChange={hdlDateChange}
-        hdlInputChange={hdlInputChange}
-        title={title}
-        color={color}
-        allDay={allDay}
-        action={hdlSubmitAddEvent}
-      ></EventModal>
+      <div class=" flex items-center mb-4">
+        <button
+          onClick={() => toggleShowModal()}
+          // data-modal-target="add-event-modal"
+          // data-modal-toggle="add-event-modal"
+          class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          Add Event
+        </button>
+      </div>
+      {showModal && (
+        <EventModal
+          modalTitle="Add event"
+          startDate={startDate}
+          endDate={endDate}
+          hdlDateChange={hdlDateChange}
+          hdlInputChange={hdlInputChange}
+          title={title}
+          color={color}
+          allDay={allDay}
+          action={hdlSubmitAddEvent}
+          toggleShowModal={toggleShowModal}
+        ></EventModal>
+      )}
     </div>
   );
 };

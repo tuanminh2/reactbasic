@@ -1,11 +1,11 @@
 .switch {
     position: absolute;
-    top: 42px;
+    top: 28px;
     transform: translate(-50%, -50%);
     display: inline-block;
     width: 60px;
     height: 34px;
-    right: -28px;
+    right: -10px;
   }
   
   #themeCb {

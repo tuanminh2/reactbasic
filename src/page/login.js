@@ -30,11 +30,11 @@ class Login extends React.Component {
                         color: "black",
                       }}
                     >
-                      <div
-                        className="auth_box"
-                       
-                      >
-                        <h3 className="text-uppecase text-center mb-4">
+                      <div className="auth_box">
+                        <h3
+                          style={{ fontWeight: "bold" }}
+                          className="text-uppecase text-center mb-4"
+                        >
                           LOGIN
                         </h3>
                         <SocialLogin

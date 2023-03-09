@@ -47,7 +47,7 @@ const LoginPass = () => {
             name="password"
             value={password}
             onChange={hdlChangInput}
-            style={{ width: "100%" , border: "1px solid black"}}
+            style={{ width: "100%", border: "1px solid black" }}
           />
           <small onClick={() => setTypePass(!typePass)}>
             {typePass ? "Hide" : "Show"}
@@ -57,7 +57,14 @@ const LoginPass = () => {
 
       <button
         type="submit"
-        style={{ backgroundColor: "blue", color: "white" }}
+        style={{
+          backgroundColor: "blue",
+          color: "white",
+          margin: "16px auto",
+          width: "60%",
+          padding: "6px",
+          borderRadius: "12px",
+        }}
         disabled={account && password ? false : true}
       >
         Login

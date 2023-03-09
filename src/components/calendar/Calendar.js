@@ -9,25 +9,24 @@ import ByClickEventModal from "../modal/ByClickEventModal";
 import { useDispatch } from "react-redux";
 const Calendar = () => {
   const { events } = useSelector((state) => state.eventSlice);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const eventClassNames = function (arg) {
     if (arg.event.allDay) {
-      return ['alldayeventstyle']
+      return ["alldayeventstyle"];
     } else {
-      return ['']
+      return [""];
     }
-  }
-
+  };
 
   const hdlEventClick = (info) => {
-
-    const event = events.find(e => e.id === info.event.id)
-    dispatch(setSelectedEvent(event))
+    const event = events.find((e) => e.id === info.event.id);
+    dispatch(setSelectedEvent(event));
     document.getElementById("showActionFormBtn").click();
-  }
+  };
   return (
     <>
       <FullCalendar
+       
         plugins={[daygridPlugin, timegridPlugin, interactionPlugin]}
         headerToolbar={{
           left: "prev,next today",
@@ -42,7 +41,6 @@ const Calendar = () => {
         eventClick={hdlEventClick}
         dayMaxEvents={2}
       ></FullCalendar>
-
     </>
   );
 };

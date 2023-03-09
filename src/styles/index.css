@@ -98,6 +98,7 @@ div[modal-backdrop] {
 }
 
 .fc {
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -209,4 +210,8 @@ button:focus {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  color: "black !important";
 }

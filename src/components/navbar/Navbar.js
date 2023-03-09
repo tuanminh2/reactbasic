@@ -1,11 +1,24 @@
 import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContextProvider";
+import ToggleThemeBtn from "../todolist/ToggleThemeBtn";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 const Navbar = () => {
   const { user, accessToken, signOut } = useContext(AuthContext);
+  const themeState = useContext(ThemeContext);
+
+  const theme = themeState[themeState.active];
+
   return (
     <div>
-      <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 ">
+      <nav
+        style={{
+          backgroundColor: theme["headerColor"],
+          borderBottom: "2px solid crimson",
+          color: theme["headerTextColor"],
+        }}
+        class="fixed top-0 z-50 w-full "
+      >
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
@@ -31,59 +44,64 @@ const Navbar = () => {
                   ></path>
                 </svg>
               </button>
-              <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  class="h-8 mr-3"
-                  alt="FlowBite Logo"
-                />
-                <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Flowbite
-                </span>
-              </a>
-            </div>
-            {accessToken && (
-              <div class="flex items-center">
-                <strong>{user.name}</strong>
-                <div class="flex items-center ml-3">
-                  <div>
-                    <img
-                      style={{
-                        width: "30px",
-                        height: "30px",
 
-                        borderRadius: "50%",
-                      }}
-                      src={user.avatar}
-                    />
-                  </div>
-                  <div
-                    class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                    id="dropdown-user"
-                  >
-                    <div class="px-4 py-3" role="none">
-                      <p
-                        class="text-sm text-gray-900 dark:text-white"
-                        role="none"
-                      >
-                        {user.username}
-                      </p>
+              <img
+                src="https://flowbite.com/docs/images/logo.svg"
+                class="h-8 mr-3"
+                alt="FlowBite Logo"
+              />
+              <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                Flowbite
+              </span>
+            </div>
+            <div class="" style={{ marginRight: "80px" }}>
+              {accessToken && (
+                <div class="flex items-center">
+                  <strong>{user.name}</strong>
+                  <div class="flex items-center ml-3">
+                    <div>
+                      <img
+                        style={{
+                          width: "30px",
+                          height: "30px",
+
+                          borderRadius: "50%",
+                        }}
+                        src={user.avatar}
+                      />
                     </div>
-                    <ul class="py-1" role="none">
-                      <li>
-                        <a
-                          href="#"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                          role="menuitem"
+                    <div
+                      class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                      id="dropdown-user"
+                    >
+                      <div class="px-4 py-3" role="none">
+                        <p
+                          class="text-sm text-gray-900 dark:text-white"
+                          role="none"
                         >
-                          Sign out
-                        </a>
-                      </li>
-                    </ul>
+                          {user.username}
+                        </p>
+                      </div>
+                      <ul class="py-1" role="none">
+                        <li>
+                          <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                            role="menuitem"
+                          >
+                            Sign out
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
+              )}
+
+              <div class="flex items-center">
+                <ToggleThemeBtn></ToggleThemeBtn>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </nav>

@@ -5,8 +5,8 @@ export const ThemeContext = createContext();
 class ThemeContextProvider extends Component {
   state = {
     light: {
-      headerColor: "#e4e4e4",
-      bodyColor: "#e4e4e4",
+      headerColor: "#E3DFFD",
+      bodyColor: "#EEEEEE",
 
       todoColor: "white",
 
@@ -16,8 +16,9 @@ class ThemeContextProvider extends Component {
       bodyTextColor: "black",
     },
     dark: {
-      headerColor: "#362e2e",
-      bodyColor: "#362e2e",
+
+      headerColor: "#13005A",
+      bodyColor: "#00337C",
 
       todoColor: "#01316e",
       tableColor: "#01316e",
